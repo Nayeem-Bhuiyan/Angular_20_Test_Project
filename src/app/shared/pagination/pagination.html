@@ -1,0 +1,42 @@
+<nav *ngIf="totalPages > 1">
+  <ul class="pagination">
+    <!-- First button (hidden on first page) -->
+    <!-- <li *ngIf="currentPage !== 1"> -->
+    <li>
+      <button (click)="changePage(1)" [disabled]="currentPage === 1">
+        First
+      </button>
+    </li>
+
+    <!-- Prev button (hidden on first page) -->
+    <li *ngIf="currentPage !== 1">
+      <button (click)="changePage(currentPage - 1)">
+        &laquo;
+      </button>
+    </li>
+
+    <!-- Page numbers -->
+    <li *ngFor="let page of pages">
+      <button
+        [class.active]="page === currentPage"
+        (click)="changePage(page)">
+        {{ page }}
+      </button>
+    </li>
+
+    <!-- Next button (hidden on last page) -->
+    <li *ngIf="currentPage !== totalPages">
+      <button (click)="changePage(currentPage + 1)">
+        &raquo;
+      </button>
+    </li>
+
+    <!-- Last button (hidden on last page) -->
+    <!-- *ngIf="currentPage !== totalPages" -->
+    <li>
+      <button (click)="changePage(totalPages)" [disabled]="currentPage === totalPages">
+        Last
+      </button>
+    </li>
+  </ul>
+</nav>
